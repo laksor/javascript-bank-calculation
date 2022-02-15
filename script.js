@@ -1,14 +1,24 @@
 
 // calculation
 
-document.getElementById('depo-btn').addEventListener('click', function (){
-    const damount = document.getElementById('depo-amt');
-    const amt = damount.value;
+document.getElementById('deposit-btn').addEventListener('click', function (){
+    // getting deposit input
+    const depositInput = document.getElementById('deposit-input');
+    const totalInput = depositInput.value;
 
-    const depoUp = document.getElementById('depo-num');
-     depoUp.innerText = amt;
+    // taking deposit input to set it on deposit amount
+    const depoUpdated = document.getElementById('deposit-amount');
+     depoUpdated.innerText = totalInput;
 
-     damount.value = '';
+    //  clearing the deposit input
+     depositInput.value = '';
+
+    //  adding new deposit to old deposit
+    
+
+
+
+
 
 });
 
