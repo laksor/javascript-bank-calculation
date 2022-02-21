@@ -13,41 +13,43 @@ function previousAmountTotal(startingAmount, amount){
     const preAmount = document.getElementById(startingAmount);
     const preAmountText = preAmount.innerText;
     const totalPreAmount = parseFloat(preAmountText);
-
+    // adding deposit to balance
     preAmount.innerText = totalPreAmount + amount;
-
 }
 // balance
-function balanceAmountTotal(preBalance, amount){
+function balanceAmountTotal(preBalance, amount, isAdd){
     const preBalanceAmount = document.getElementById(preBalance);
     const preBalanceAmountText = preBalanceAmount.innerText;
     const totalPreBalanceAmount = parseFloat(preBalanceAmountText);
-
-    preBalanceAmount.innerText = totalPreBalanceAmount + amount;
-
+    
+    if(isAdd == true){
+        preBalanceAmount.innerText = totalPreBalanceAmount + amount;
+    }
+    else{
+        preBalanceAmount.innerText = totalPreBalanceAmount - amount;
+    }
 }
-
 
 // calculation
 document.getElementById('deposit-btn').addEventListener('click', function (){
     // getting deposit input
     const depositInput = getInput('deposit-input');
     
-    // taking deposit input to set it on deposit amount
+    // adding previous deposit  to new one
     previousAmountTotal('deposit-amount', depositInput);
 
-    //  adding new deposit to old balance
-    balanceAmountTotal('balance-amount', depositInput);
-});
+    // adding  deposit to total balance
+    balanceAmountTotal('balance-amount', depositInput, true);
+})
 // withdraw
 document.getElementById('withdraw-btn').addEventListener('click', function (){
 
     // getting withdraw input
     const withdrawInput = getInput('withdraw-input');
 
-    // taking withdraw input to set it on withdraw amount
+    // adding previous withdraw  to new one
     previousAmountTotal('withdraw-amount', withdrawInput);
 
-     // adding new deposit to old balance
+     // sub withdrawl from  total balance
     balanceAmountTotal('balance-amount', withdrawInput);
-});
+})
