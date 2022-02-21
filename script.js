@@ -28,12 +28,13 @@ function balanceAmountTotal(preBalance, amount, isAdd){
     else{
         preBalanceAmount.innerText = totalPreBalanceAmount - amount;
     }
-
-    // alert
-    if(getInput('withdraw-input') > preBalanceAmount){
-        const fail = document.getElementById('notify-fail');
-        fail.style.display = 'block';
-    }
+}
+// current balance used for alert
+function getCurrentBalance(){
+    const balance = document.getElementById('balance-amount');
+    const balanceText = balance.innerText;
+    const totalBalance = parseFloat(balanceText);
+    return totalBalance;
 }
 
 // deposit button
@@ -55,14 +56,24 @@ document.getElementById('withdraw-btn').addEventListener('click', function (){
     // getting withdraw input
     const withdrawInput = getInput('withdraw-input');
 
-    // adding previous withdraw  to new one
-    previousAmountTotal('withdraw-amount', withdrawInput);
+    // current balalnce 
+    const currentBalance = getCurrentBalance();
 
-     // sub withdrawl from  total balance
-    balanceAmountTotal('balance-amount', withdrawInput);
-     
+    if(withdrawInput > 0 && withdrawInput <= currentBalance){
+        // adding previous withdraw  to new one
+        previousAmountTotal('withdraw-amount', withdrawInput);
+
+        // sub withdrawl from  total balance
+        balanceAmountTotal('balance-amount', withdrawInput);
+    }
+    //----- alert  ------!
+    if(withdrawInput > currentBalance){
+        const fail = document.getElementById('notify-fail');
+        fail.style.display = 'block';
+    } 
 })
-// // alert
+
+//----- alert  ------!
 document.getElementById('deposit-input').addEventListener('keyup', function(event){
     const value = event.target.value;
     if(isNaN(value)){
@@ -77,6 +88,6 @@ document.getElementById('withdraw-input').addEventListener('keyup', function(eve
         failed.style.display = 'block';
     }
 })
-
+// ----- project done ---------
 
 
