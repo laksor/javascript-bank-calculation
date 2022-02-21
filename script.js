@@ -88,6 +88,11 @@ document.getElementById('withdraw-input').addEventListener('keyup', function(eve
         failed.style.display = 'block';
     }
 })
+
+// sign out button
+document.getElementById('sign-out').addEventListener('click', function(){
+    window.location.href = 'index.html';
+})
 // ----- project done ---------
 
 
